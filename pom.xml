@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.future.feign</groupId>
+    <artifactId>future-feign-springboot-starter</artifactId>
+    <version>2022.10.17-release</version>
+    <description>
+        After watching the open - feign source of essays,
+        Only through the HTTP client - simple injection calls to feign interface is realized,
+        Thank you for using.
+    </description>
+
+    <developers>
+        <developer>
+            <id>future-feign-springboot-starter</id>
+            <name>zhangpengfei</name>
+            <email>929160069@qq.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/beijingdaxuevip666/future-feign-springboot-starter.git</connection>
+        <developerConnection>scm:git:https://github.com/beijingdaxuevip666/future-feign-springboot-starter.git</developerConnection>
+        <url>https://github.com/beijingdaxuevip666/future-feign-springboot-starter</url>
+    </scm>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.5.6</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <hutool-all.version>5.8.5</hutool-all.version>
+        <guava.version>31.1-jre</guava.version>
+        <fastJson.version>2.0.10.graal</fastJson.version>
+        <rxjava3.version>3.1.5</rxjava3.version>
+        <collections4.version>4.4</collections4.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool-all.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastJson.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${collections4.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.reactivex.rxjava3</groupId>
+            <artifactId>rxjava</artifactId>
+            <version>${rxjava3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>2289295-release-xLVOUt</id>
+            <name>生产库-release</name>
+            <url>https://packages.aliyun.com/maven/repository/2289295-release-xLVOUt</url>
+        </repository>
+        <snapshotRepository>
+            <id>2289295-snapshot-DbzLa8</id>
+            <name>非生产库-snapshot</name>
+            <url>https://packages.aliyun.com/maven/repository/2289295-snapshot-DbzLa8</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
