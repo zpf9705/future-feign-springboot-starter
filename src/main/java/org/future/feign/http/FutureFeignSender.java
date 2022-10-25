@@ -22,8 +22,12 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 @SuppressWarnings("all")
@@ -34,7 +38,7 @@ public final class FutureFeignSender {
     }
 
     @SneakyThrows
-    public static String send(RequestMethod requestMethod, String url, Map<String, String> headers,
+    public static String sendAction(RequestMethod requestMethod, String url, Map<String, String> headers,
                               Object param) {
         String result = null;
         switch (requestMethod) {
@@ -52,14 +56,11 @@ public final class FutureFeignSender {
         return result;
     }
 
-
     /**
-     * GET请求
-     *
      * @param url     请求url
      * @param headers 头部
      * @param params  参数
-     * @return
+     * @description: GET请求
      */
     public static String sendGet(String url, Map<String, String> headers, Map<String, Object> params) throws Exception {
         CloseableHttpClient client = HttpClients.custom().build();
@@ -83,13 +84,12 @@ public final class FutureFeignSender {
         return result;
     }
 
+
     /**
-     * post请求发送json
-     *
      * @param url
      * @param json
      * @param headers
-     * @return
+     * @description: post请求发送json
      */
     public static String sendPostJson(String url, Map<String, String> headers, String json) throws Exception {
         CloseableHttpClient client = HttpClients.createDefault();
@@ -128,6 +128,12 @@ public final class FutureFeignSender {
             hearders.put(headName, request.getHeader(headName));
         }
         return hearders;
+    }
+
+    public static String changeHttpEntity(CloseableHttpResponse response) throws IOException {
+        Assert.notNull(response, "CloseableHttpResponse no be null!");
+        HttpEntity entity = response.getEntity();
+        return EntityUtils.toString(entity, "utf-8");
     }
 
     private static URIBuilder getURIBuilder(String url, Map<String, Object> params) throws URISyntaxException {

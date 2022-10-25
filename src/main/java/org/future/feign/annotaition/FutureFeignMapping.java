@@ -5,18 +5,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.lang.annotation.*;
 
+/**
+ * @author zpf
+ * @description FutureFeign client annotation
+ * @see org.springframework.web.bind.annotation.PostMapping
+ * @see org.springframework.web.bind.annotation.GetMapping
+ * @createTime 2022-10-14 10:59
+ */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface FutureFeignMapping {
 
     /**
-     * api 访问路径
+     * api value
      */
-    String path() default "";
+    String value() default "";
 
     /**
-     * api访问方法
+     * api method
      */
     RequestMethod method() default RequestMethod.POST;
 }

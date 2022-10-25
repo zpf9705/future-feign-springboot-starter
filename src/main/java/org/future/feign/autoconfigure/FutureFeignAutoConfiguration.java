@@ -2,6 +2,7 @@ package org.future.feign.autoconfigure;
 
 import org.future.feign.yaml.YamlPropertiesProvider;
 import org.future.feign.yaml.YamlPropertiesReader;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
@@ -15,7 +16,7 @@ import org.springframework.core.Ordered;
 
 /**
  * @author zpf
- * @description FutureFeign 自动配置
+ * @description FutureFeign auto configure
  * @createTime 2022-10-15 14:38
  */
 @Configuration
@@ -33,9 +34,9 @@ public class FutureFeignAutoConfiguration {
 
     @Bean
     @ConditionalOnBean(YamlPropertiesReader.class)
-    public YamlPropertiesProvider yamlPropertiesProvider(YamlPropertiesReader yamlPropertiesReader){
+    public YamlPropertiesProvider yamlPropertiesProvider(ObjectProvider<YamlPropertiesReader> readerObjectProvider){
         return YamlPropertiesProvider.instance()
-                .reader(yamlPropertiesReader)
+                .reader(readerObjectProvider.getIfAvailable())
                 .build();
     }
 }

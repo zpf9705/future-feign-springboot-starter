@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 /**
  * @author zpf
- * @description yaml 管理
+ * @description yaml manager
  * @createTime 2022-10-19 10:54
  */
 public class YamlPropertiesReader {
@@ -28,25 +28,18 @@ public class YamlPropertiesReader {
         this.yamlPropertiesFactoryBean = yamlPropertiesFactoryBean;
     }
 
-    /**
-     * 初始化环境参数
-     */
+
     public static YamlPropertiesReader initFactoryBean() {
         return new YamlPropertiesReader(new YamlPropertiesFactoryBean());
     }
 
-    /**
-     * 初始化环境参数
-     */
+
     public YamlPropertiesReader profile(String... profiles) {
         this.profiles = profiles;
         return this;
     }
 
 
-    /**
-     * 初始化yaml工厂参数
-     */
     public YamlPropertiesReader initYamlFactory() {
         Assert.isTrue(ArrayUtils.isNotEmpty(profiles),"profiles can not be empty!");
         ClassPathResource[] classPathResources = null;

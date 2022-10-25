@@ -2,41 +2,41 @@ package org.future.feign.other;
 
 /**
  * @author zpf
- * @description future-feign 常量
+ * @description future-feign Constant
  * @createTime 2022-10-15 14:27
  */
 public final class Constant {
 
     /**
-     * 客户端扫描路径
+     * FutureFeignClient scanner path name
      *
      * @see org.future.feign.annotaition.EnableFutureFeignClients
      */
     public static final String BASE_PACKAGES = "basePackages";
 
     /**
-     * 方法访问uri
+     * request uri name
      *
      * @see org.future.feign.annotaition.FutureFeignClient
      */
     public static final String URI = "uri";
 
     /**
-     * future-feign接口名称
+     * future-feign interface class name
      *
      * @see org.future.feign.annotaition.FutureFeignClient
      */
     public static final String INTERFACE_CLASS = "interfaceClass";
 
     /**
-     * 代理对象名称
+     * proxy obj name
      *
      * @see org.future.feign.annotaition.FutureFeignClient
      */
     public static final String NAME = "name";
 
     /**
-     * 方法访问路径
+     * proxy obj method path name
      *
      * @see org.future.feign.annotaition.FutureFeignClient
      */

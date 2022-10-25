@@ -7,7 +7,7 @@ import java.lang.annotation.*;
 
 /**
  * @author zpf
- * @description 开启future-feign注解
+ * @description enable future-feign annotation
  * @createTime 2022-10-14 10:59
  */
 @Retention(RetentionPolicy.RUNTIME)
@@ -17,7 +17,7 @@ import java.lang.annotation.*;
 public @interface EnableFutureFeignClients {
 
     /**
-     * 扫描路径
+     * scanner packages
      */
     String[] basePackages() default {};
 }

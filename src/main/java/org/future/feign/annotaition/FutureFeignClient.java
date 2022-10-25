@@ -4,7 +4,7 @@ import java.lang.annotation.*;
 
 /**
  * @author zpf
- * @description FutureFeign 客户端注解
+ * @description FutureFeign client annotation
  * @createTime 2022-10-14 10:59
  */
 @Target({ElementType.TYPE})
@@ -14,17 +14,17 @@ import java.lang.annotation.*;
 public @interface FutureFeignClient {
 
     /**
-     * 名称
+     * name
      */
     String name() default "";
 
     /**
-     * 接口路径
+     * path
      */
     String path() default "";
 
     /**
-     * 访问uri
+     * uri
      */
     String uri() default "";
 }

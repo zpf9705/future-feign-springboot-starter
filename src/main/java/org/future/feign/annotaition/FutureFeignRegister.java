@@ -27,14 +27,25 @@ import java.util.Set;
 
 /**
  * @author zpf
- * @description api注册机
+ * @description future-client register
  * @createTime 2022-10-14 10:59
  */
 @SuppressWarnings("PMD.@NonNullApi parameter all")
 public class FutureFeignRegister implements ImportBeanDefinitionRegistrar, EnvironmentAware, ResourceLoaderAware {
 
+    /**
+     * if future-client no path this is default path
+     */
+    private static final String DEFAULT_IP_PORT = "http://localhost:80";
+
+    /**
+     * @see Environment
+     */
     private Environment environment;
 
+    /**
+     * @see ResourceLoader
+     */
     private ResourceLoader resourceLoader;
 
     @Override
@@ -53,9 +64,9 @@ public class FutureFeignRegister implements ImportBeanDefinitionRegistrar, Envir
     }
 
     /**
-     * @param metadata 注解参数
-     * @param registry bean注册机
-     * @description: 注册FutureFeignClients客户端
+     * @param metadata annotion register
+     * @param registry bean register
+     * @description: register FutureFeignClients
      * @author: zpf
      * @see EnableFutureFeignClients
      */
@@ -87,11 +98,11 @@ public class FutureFeignRegister implements ImportBeanDefinitionRegistrar, Envir
     }
 
     /**
-     * @param registry           bean注册机
-     * @param annotationMetadata 注解参数
-     * @param attributes         注解参数值域
+     * @param registry           bean register
+     * @param annotationMetadata annotion params
+     * @param attributes         annotion values
      * @author: zpf
-     * @description: 注册FeignClient客户端
+     * @description: register FutureFeignClient
      * @see FutureFeignClient
      */
     private void registerFutureFeignClient(BeanDefinitionRegistry registry,
@@ -110,9 +121,9 @@ public class FutureFeignRegister implements ImportBeanDefinitionRegistrar, Envir
     }
 
     /**
-     * @param attributes 注解值
-     * @return bean名称
-     * @description: 获取bean名称
+     * @param attributes annotion values
+     * @return annotion name
+     * @description: get bean name
      * @see Constant
      */
     private String getName(AnnotationAttributes attributes) {
@@ -128,16 +139,16 @@ public class FutureFeignRegister implements ImportBeanDefinitionRegistrar, Envir
     }
 
     /**
-     * @param attributes 注解值
+     * @param attributes annotion values
      * @return uri
-     * @description: 获取uri地址
-     * @see Constant
+     * @description: get uri address
      * @author: zpf
+     * @see Constant
      */
     private String getUri(AnnotationAttributes attributes) {
         Object uri = attributes.get(Constant.URI);
         if (Objects.isNull(uri) || StringUtils.isBlank(uri.toString())) {
-            return null;
+            return DEFAULT_IP_PORT;
         }
         String uriObjStr = uri.toString();
         String uriStr = null;
@@ -159,10 +170,10 @@ public class FutureFeignRegister implements ImportBeanDefinitionRegistrar, Envir
     }
 
     /**
-     * @description: 获取扫描路径参数
-     * @see ClassPathScanningCandidateComponentProvider
-     * @return spring 路径条件扫描器
+     * @return spring  Class Path Scanning
+     * @description: get Class Path Scanning params
      * @author: zpf
+     * @see ClassPathScanningCandidateComponentProvider
      * @see FutureFeignClient
      */
     private ClassPathScanningCandidateComponentProvider getClassPathScan() {
