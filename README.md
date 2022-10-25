@@ -1,5 +1,5 @@
 # future-feign-springboot-starter
-简易版本地调用技术
+简易版声明式远程调用技术
 
 
 <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180315%2F6ef6c3a1aee74819aa6af00b5cf449fc.png&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668585148&t=d8fe7a9bc79e628d3278aea4c28f81f0" alt="Sentinel Logo" width="60%">
