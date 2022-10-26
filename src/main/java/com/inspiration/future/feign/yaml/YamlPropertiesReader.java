@@ -1,4 +1,4 @@
-package org.future.feign.yaml;
+package com.inspiration.future.feign.yaml;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;

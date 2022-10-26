@@ -1,7 +1,7 @@
-package org.future.feign.autoconfigure;
+package com.inspiration.future.feign.autoconfigure;
 
-import org.future.feign.yaml.YamlPropertiesProvider;
-import org.future.feign.yaml.YamlPropertiesReader;
+import com.inspiration.future.feign.yaml.YamlPropertiesProvider;
+import com.inspiration.future.feign.yaml.YamlPropertiesReader;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;

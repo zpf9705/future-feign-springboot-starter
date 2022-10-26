@@ -1,4 +1,4 @@
-package org.future.feign.other;
+package com.inspiration.future.feign.other;
 
 import java.io.Serializable;
 

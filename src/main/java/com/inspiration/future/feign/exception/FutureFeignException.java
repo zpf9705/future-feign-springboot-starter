@@ -1,4 +1,4 @@
-package org.future.feign.exception;
+package com.inspiration.future.feign.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

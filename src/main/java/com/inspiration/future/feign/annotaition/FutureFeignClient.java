@@ -1,4 +1,4 @@
-package org.future.feign.annotaition;
+package com.inspiration.future.feign.annotaition;
 
 import java.lang.annotation.*;
 

@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  org.future.feign.autoconfigure.FutureFeignAutoConfiguration
+  com.inspiration.future.feign.autoconfigure.FutureFeignAutoConfiguration

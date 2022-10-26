@@ -1,4 +1,4 @@
-package org.future.feign.annotaition;
+package com.inspiration.future.feign.annotaition;
 
 
 import org.springframework.web.bind.annotation.RequestMethod;

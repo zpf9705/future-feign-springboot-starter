@@ -1,4 +1,4 @@
-package org.future.feign.http;
+package com.inspiration.future.feign.http;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.alibaba.fastjson.JSON;

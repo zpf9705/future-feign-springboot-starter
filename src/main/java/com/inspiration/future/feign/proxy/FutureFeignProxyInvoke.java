@@ -1,16 +1,16 @@
-package org.future.feign.proxy;
+package com.inspiration.future.feign.proxy;
 
 import cn.hutool.core.util.ArrayUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.inspiration.future.feign.annotaition.FutureFeignMapping;
+import com.inspiration.future.feign.http.FutureFeignSender;
+import com.inspiration.future.feign.other.P;
 import io.reactivex.rxjava3.core.BackpressureStrategy;
 import io.reactivex.rxjava3.core.Flowable;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.future.feign.annotaition.FutureFeignMapping;
-import org.future.feign.http.FutureFeignSender;
-import org.future.feign.other.P;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

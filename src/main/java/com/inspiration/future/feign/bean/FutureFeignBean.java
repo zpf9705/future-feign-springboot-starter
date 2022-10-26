@@ -1,8 +1,8 @@
-package org.future.feign.bean;
+package com.inspiration.future.feign.bean;
 
 import cn.hutool.aop.ProxyUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.future.feign.proxy.FutureFeignProxyInvoke;
+import com.inspiration.future.feign.proxy.FutureFeignProxyInvoke;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.util.Assert;
 
