@@ -56,12 +56,6 @@ public final class FutureFeignSender {
         return result;
     }
 
-    /**
-     * @param url     请求url
-     * @param headers 头部
-     * @param params  参数
-     * @description: GET请求
-     */
     public static String sendGet(String url, Map<String, String> headers, Map<String, Object> params) throws Exception {
         CloseableHttpClient client = HttpClients.custom().build();
         CloseableHttpResponse response = null;
@@ -85,12 +79,6 @@ public final class FutureFeignSender {
     }
 
 
-    /**
-     * @param url
-     * @param json
-     * @param headers
-     * @description: post请求发送json
-     */
     public static String sendPostJson(String url, Map<String, String> headers, String json) throws Exception {
         CloseableHttpClient client = HttpClients.createDefault();
         CloseableHttpResponse response = null;

@@ -3,15 +3,17 @@ package com.inspiration.future.feign.proxy;
 import cn.hutool.core.util.ArrayUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.inspiration.future.feign.annotaition.FutureFeignMapping;
+import com.inspiration.future.feign.exception.Assert;
+import com.inspiration.future.feign.exception.FutureFeignException;
 import com.inspiration.future.feign.http.FutureFeignSender;
+import com.inspiration.future.feign.logger.FeignLogProvider;
 import com.inspiration.future.feign.other.P;
 import io.reactivex.rxjava3.core.BackpressureStrategy;
 import io.reactivex.rxjava3.core.Flowable;
-import lombok.extern.slf4j.Slf4j;
+import io.reactivex.rxjava3.core.FlowableOnSubscribe;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,7 +30,6 @@ import java.util.Objects;
  * @description future-feign-client-Proxy-Invoke
  * @createTime 2022-10-23 18:42
  */
-@Slf4j
 public abstract class FutureFeignProxyInvoke {
 
     private static final RequestMethod DEFAULT_REQUEST_METHOD = RequestMethod.POST;
@@ -44,7 +45,7 @@ public abstract class FutureFeignProxyInvoke {
      * but failed execute while retry
      *
      * @see java.lang.reflect.InvocationHandler
-     * @see Flowable
+     * @see Flowable#create(FlowableOnSubscribe, BackpressureStrategy)
      */
     public Object execute(Object proxy, Method method, Object[] args, String uri) {
         return Flowable.create(click -> {
@@ -61,7 +62,7 @@ public abstract class FutureFeignProxyInvoke {
      * proxy Invoke HttpSend Response
      */
     public String proxyInvokeHttpSendResponse(Object proxy, Method method, Object[] args,
-                                                             String uri) throws Exception {
+                                              String uri) throws FutureFeignException {
         return invokeHttpSendResponse(proxy, method, args, uri);
     }
 
@@ -73,8 +74,8 @@ public abstract class FutureFeignProxyInvoke {
      * @include method check
      */
     public String invokeHttpSendResponse(Object proxy, Method method, Object[] args,
-                                                        String uri) throws Exception {
-        Assert.notNull(proxy, "proxy obj can not be null !");
+                                         String uri) throws FutureFeignException {
+        Assert.noNull(proxy, "proxy obj can not be null !");
         Annotation[] annotations = method.getAnnotations();
         Assert.isTrue(ArrayUtil.isNotEmpty(annotations), "proxy obj method no find @Annotation !");
         boolean match = Arrays.stream(annotations).anyMatch(this::match);
@@ -191,6 +192,8 @@ public abstract class FutureFeignProxyInvoke {
         try {
             new URI(url);
         } catch (URISyntaxException e) {
+            FeignLogProvider.RPC_LOGGER.inPutErrorLog(
+                    "url Syntax error {}", url);
             ex = e;
         }
         Assert.isTrue(Objects.isNull(ex), "URISyntaxException to check url");
@@ -207,6 +210,9 @@ public abstract class FutureFeignProxyInvoke {
         try {
             Thread.sleep(time);
         } catch (InterruptedException e) {
+            FeignLogProvider.RPC_LOGGER.inPutErrorLog(
+                    "thread sleep error current thread interrupt "
+            );
             Thread.currentThread().interrupt();
         }
 
@@ -222,8 +228,10 @@ public abstract class FutureFeignProxyInvoke {
         try {
             response = JSONObject.parseObject(rsp, method.getReturnType());
         } catch (Exception e) {
-            e.printStackTrace();
-            //to do noting
+            //logger and throw
+            FeignLogProvider.RPC_LOGGER.inPutErrorLog("json parse failed return type error:{}",
+                    e.getMessage());
+            throw new FutureFeignException("json parse failed return type");
         }
         return response;
     }

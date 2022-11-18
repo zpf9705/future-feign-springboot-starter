@@ -44,4 +44,10 @@ public final class Constant {
      * @see FutureFeignClient
      */
     public static final String PATH = "path";
+
+    /**
+     * rpc - log
+     * @see com.inspiration.future.feign.logger.RpcRecordLog
+     */
+    public static final String RPC_LOG = "RPC_LOG";
 }

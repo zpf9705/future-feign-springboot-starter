@@ -1,9 +1,9 @@
 package com.inspiration.future.feign.annotaition;
 
 
+import com.inspiration.future.feign.bean.FutureFeignBean;
 import com.inspiration.future.feign.other.Constant;
 import org.apache.commons.lang3.StringUtils;
-import com.inspiration.future.feign.bean.FutureFeignBean;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
