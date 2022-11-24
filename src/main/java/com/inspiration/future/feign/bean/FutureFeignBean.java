@@ -88,7 +88,7 @@ public class FutureFeignBean<T> extends FutureFeignProxyInvoke implements Factor
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Assert.notNull(proxy, "proxy obj can not be null !");
         Assert.isTrue(StringUtils.isNotBlank(uri), "uri not be null ！");
-        Assert.isTrue(StringUtils.isNotBlank(path), "path not be null ！");
-        return execute(proxy, method, args, uri + path);
+        uri = StringUtils.isNotBlank(uri) ? uri + path : uri;
+        return execute(proxy, method, args, uri);
     }
 }
