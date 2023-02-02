@@ -8,9 +8,10 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
+ * Assert error of this project
+ *
  * @author zpf
- * @description Assert error
- * @createTime 2022-11-18 14:25
+ * @since 1.1.0
  */
 public abstract class Assert {
 

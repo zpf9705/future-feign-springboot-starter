@@ -6,7 +6,7 @@
 
     <groupId>com.inspiration.future</groupId>
     <artifactId>future-feign-springboot-starter</artifactId>
-    <version>2022.10.25-release</version>
+    <version>1.1.0</version>
     <description>
         After watching the open - feign source of essays,
         Only through the HTTP client - simple injection calls to feign interface is realized,

@@ -5,9 +5,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.inspiration.future.feign.annotaition.FutureFeignMapping;
 import com.inspiration.future.feign.exception.Assert;
 import com.inspiration.future.feign.exception.FutureFeignException;
-import com.inspiration.future.feign.http.FutureFeignSender;
 import com.inspiration.future.feign.logger.FeignLogProvider;
 import com.inspiration.future.feign.other.P;
+import com.inspiration.future.feign.rpc.PseudoRpcUtils;
 import io.reactivex.rxjava3.core.BackpressureStrategy;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.FlowableOnSubscribe;
@@ -26,9 +26,23 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
+ * future-feign-client-Proxy-Invoke
+ *  ......
+ * Recorded the whole process of the future - feign call here
+ * @see io.reactivex.rxjava3.plugins.RxJavaPlugins
+ * @see Flowable#create(FlowableOnSubscribe, BackpressureStrategy)
+ * In support of custom annotations for request parameters at the same time {@link FutureFeignMapping}
+ * At the same time also supports spring annotations example {@link PostMapping}
+ *  ......
+ * Will take to the request from the corresponding annotations domain related parameters for non sense of pseudo call HTTP RPC calls
+ *  ......
+ * Ideological reference and open - feign
+ * But using the threshold is lower than the open - feign
+ *
+ * Specific usage can reference {@link com.inspiration.future.feign.doc...}
+ *
  * @author zpf
- * @description future-feign-client-Proxy-Invoke
- * @createTime 2022-10-23 18:42
+ * @since 1.1.0
  */
 public abstract class FutureFeignProxyInvoke {
 
@@ -61,8 +75,7 @@ public abstract class FutureFeignProxyInvoke {
     /**
      * proxy Invoke HttpSend Response
      */
-    public String proxyInvokeHttpSendResponse(Object proxy, Method method, Object[] args,
-                                              String uri) throws FutureFeignException {
+    public String proxyInvokeHttpSendResponse(Object proxy, Method method, Object[] args, String uri){
         return invokeHttpSendResponse(proxy, method, args, uri);
     }
 
@@ -73,8 +86,7 @@ public abstract class FutureFeignProxyInvoke {
      * @include @annotation check
      * @include method check
      */
-    public String invokeHttpSendResponse(Object proxy, Method method, Object[] args,
-                                         String uri) throws FutureFeignException {
+    public String invokeHttpSendResponse(Object proxy, Method method, Object[] args, String uri){
         Assert.noNull(proxy, "proxy obj can not be null !");
         Annotation[] annotations = method.getAnnotations();
         Assert.isTrue(ArrayUtil.isNotEmpty(annotations), "proxy obj method no find @Annotation !");
@@ -84,12 +96,10 @@ public abstract class FutureFeignProxyInvoke {
         /*check Annotations*/
         Annotation one = checkAnnotations(annotations);
         /*get url http-method*/
-        P<RequestMethod, String> annotationValue = getAnnotationValue(one, method, uri);
+        P<RequestMethod, String> value = getAnnotationValue(one, method, uri);
         /*get param*/
         Object param = getParamObj(args);
-        return FutureFeignSender.sendAction(annotationValue.getLeft(),
-                annotationValue.getRight(), FutureFeignSender.gethearders(),
-                param);
+        return PseudoRpcUtils.doRequestSwitch(value.getLeft(), value.getRight(), param);
     }
 
     /**
@@ -224,7 +234,7 @@ public abstract class FutureFeignProxyInvoke {
      * so can exchange this response to method return type
      */
     private Object exchangeEntity(Method method, String rsp) {
-        Object response = null;
+        Object response;
         try {
             response = JSONObject.parseObject(rsp, method.getReturnType());
         } catch (Exception e) {

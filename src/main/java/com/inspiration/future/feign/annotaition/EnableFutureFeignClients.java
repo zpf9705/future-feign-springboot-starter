@@ -6,9 +6,14 @@ import org.springframework.context.annotation.Import;
 import java.lang.annotation.*;
 
 /**
+ * Enable future-feign register annotation
+ *
+ * @see FutureFeignRegister
+ * @see FutureFeignClient
+ * @see FutureFeignMapping
+ *
  * @author zpf
- * @description enable future-feign annotation
- * @createTime 2022-10-14 10:59
+ * @since 1.1.0
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})

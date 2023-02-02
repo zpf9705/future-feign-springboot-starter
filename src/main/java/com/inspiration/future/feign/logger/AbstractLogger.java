@@ -3,9 +3,10 @@ package com.inspiration.future.feign.logger;
 import org.slf4j.Marker;
 
 /**
+ * slf4j abstract logger
+ *
  * @author zpf
- * @description abstract logger
- * @createTime 2022-11-18 13:33
+ * @since 1.1.0
  */
 public abstract class AbstractLogger {
 

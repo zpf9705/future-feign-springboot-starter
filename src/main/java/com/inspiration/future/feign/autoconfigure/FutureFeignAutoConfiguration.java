@@ -1,42 +1,22 @@
 package com.inspiration.future.feign.autoconfigure;
 
-import com.inspiration.future.feign.yaml.YamlPropertiesProvider;
-import com.inspiration.future.feign.yaml.YamlPropertiesReader;
-import org.springframework.beans.factory.ObjectProvider;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
+
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnJava;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.system.JavaVersion;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 
 /**
+ * AutoConfiguration Automatic assembly of things temporarily no need
+ *
  * @author zpf
- * @description FutureFeign auto configure
- * @createTime 2022-10-15 14:38
+ * @since 1.1.0
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnJava(JavaVersion.EIGHT)
 @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
 public class FutureFeignAutoConfiguration {
 
-    @Bean
-    @ConditionalOnMissingBean(YamlPropertiesFactoryBean.class)
-    public YamlPropertiesReader yamlPropertiesReader(@Value("${spring.profiles.active:-0}")String profiles){
-        return YamlPropertiesReader.initFactoryBean()
-                .profile(profiles)
-                .initYamlFactory();
-    }
-
-    @Bean
-    @ConditionalOnBean(YamlPropertiesReader.class)
-    public YamlPropertiesProvider yamlPropertiesProvider(ObjectProvider<YamlPropertiesReader> readerObjectProvider){
-        return YamlPropertiesProvider.instance()
-                .reader(readerObjectProvider.getIfAvailable())
-                .build();
-    }
+    //BUT NO
 }

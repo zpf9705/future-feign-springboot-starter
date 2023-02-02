@@ -1,47 +1,47 @@
 package com.inspiration.future.feign.other;
 
-import com.inspiration.future.feign.annotaition.EnableFutureFeignClients;
-import com.inspiration.future.feign.annotaition.FutureFeignClient;
+
 
 /**
+ * future-feign Constant
+ *
  * @author zpf
- * @description future-feign Constant
- * @createTime 2022-10-15 14:27
+ * @since 1.1.0
  */
 public final class Constant {
 
     /**
      * FutureFeignClient scanner path name
      *
-     * @see EnableFutureFeignClients
+     * @see com.inspiration.future.feign.annotaition.EnableFutureFeignClients
      */
     public static final String BASE_PACKAGES = "basePackages";
 
     /**
      * request uri name
      *
-     * @see FutureFeignClient
+     * @see com.inspiration.future.feign.annotaition.EnableFutureFeignClients
      */
     public static final String URI = "uri";
 
     /**
      * future-feign interface class name
      *
-     * @see FutureFeignClient
+     * @see com.inspiration.future.feign.annotaition.FutureFeignClient
      */
     public static final String INTERFACE_CLASS = "interfaceClass";
 
     /**
      * proxy obj name
      *
-     * @see FutureFeignClient
+     * @see com.inspiration.future.feign.annotaition.FutureFeignClient
      */
     public static final String NAME = "name";
 
     /**
      * proxy obj method path name
      *
-     * @see FutureFeignClient
+     * @see com.inspiration.future.feign.annotaition.FutureFeignClient
      */
     public static final String PATH = "path";
 

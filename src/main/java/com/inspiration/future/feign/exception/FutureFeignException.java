@@ -5,9 +5,10 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
+ * future -feign exception
+ *
  * @author zpf
- * @description future -feign exception
- * @createTime 2022-10-25 10:15
+ * @since 1.1.0
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

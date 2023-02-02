@@ -5,9 +5,10 @@ import com.inspiration.future.feign.other.Constant;
 import org.slf4j.LoggerFactory;
 
 /**
+ * future feign rpc log main record call produce
+ *
  * @author zpf
- * @description future-feign-log
- * @createTime 2022-11-18 09:34
+ * @since 1.1.0
  */
 @LogTarget(value = Constant.RPC_LOG)
 public class RpcRecordLog extends AbstractLogger implements Logger {

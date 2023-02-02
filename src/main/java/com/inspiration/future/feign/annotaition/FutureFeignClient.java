@@ -3,9 +3,10 @@ package com.inspiration.future.feign.annotaition;
 import java.lang.annotation.*;
 
 /**
+ * FutureFeign client annotation
+ *
  * @author zpf
- * @description FutureFeign client annotation
- * @createTime 2022-10-14 10:59
+ * @since 1.1.0
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

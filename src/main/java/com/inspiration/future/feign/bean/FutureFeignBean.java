@@ -1,8 +1,8 @@
 package com.inspiration.future.feign.bean;
 
 import cn.hutool.aop.ProxyUtil;
-import org.apache.commons.lang3.StringUtils;
 import com.inspiration.future.feign.proxy.FutureFeignProxyInvoke;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.util.Assert;
 
@@ -10,9 +10,14 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
 /**
+ * @see FactoryBean
+ * @see InvocationHandler
+ *
+ * Using the factorybean springboot bean personalized injection
+ * Then use the JDK dynamic proxy to create a proxy object method directly
+ *
  * @author zpf
- * @description register bean
- * @createTime 2022-10-14 16:01
+ * @since 1.1.0
  */
 public class FutureFeignBean<T> extends FutureFeignProxyInvoke implements FactoryBean<T>, InvocationHandler {
 
@@ -81,6 +86,11 @@ public class FutureFeignBean<T> extends FutureFeignProxyInvoke implements Factor
     @Override
     public Class<?> getObjectType() {
         return interfaceClass;
+    }
+
+    @Override
+    public boolean isSingleton() {
+        return true;
     }
 
     @Override

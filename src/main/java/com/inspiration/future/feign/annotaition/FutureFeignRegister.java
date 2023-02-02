@@ -2,6 +2,7 @@ package com.inspiration.future.feign.annotaition;
 
 
 import com.inspiration.future.feign.bean.FutureFeignBean;
+import com.inspiration.future.feign.exception.Assert;
 import com.inspiration.future.feign.other.Constant;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
@@ -20,15 +21,27 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
-import org.springframework.util.Assert;
 
 import java.util.Objects;
 import java.util.Set;
 
 /**
+ * <p>
+ *
+ * future-client register Using the JDK dynamic proxy and bean registered machine
+ * for the future - feign client creates proxy objects to the ioc container
+ *
+ * </p>
+ * @see EnvironmentAware
+ * @see ResourceLoaderAware
+ * @see BeanDefinition
+ * @see java.lang.reflect.InvocationHandler
+ * @see org.springframework.context.ApplicationContextAware
+ *
+ * ......
+ *
  * @author zpf
- * @description future-client register
- * @createTime 2022-10-14 10:59
+ * @since 1.1.0
  */
 @SuppressWarnings("PMD.@NonNullApi parameter all")
 public class FutureFeignRegister implements ImportBeanDefinitionRegistrar, EnvironmentAware, ResourceLoaderAware {
@@ -74,7 +87,7 @@ public class FutureFeignRegister implements ImportBeanDefinitionRegistrar, Envir
         //获取开启注解值
         AnnotationAttributes attributes = AnnotationAttributes
                 .fromMap(metadata.getAnnotationAttributes(EnableFutureFeignClients.class.getName()));
-        Assert.notNull(attributes, "@EnableFutureFeignClients  AnnotationAttributes is null ！");
+        Assert.noNull(attributes, "@EnableFutureFeignClients  AnnotationAttributes is null ！");
         String[] scanPackages = attributes.getStringArray(Constant.BASE_PACKAGES);
 
         ClassPathScanningCandidateComponentProvider classPathScan = getClassPathScan();
@@ -110,7 +123,7 @@ public class FutureFeignRegister implements ImportBeanDefinitionRegistrar, Envir
         String className = annotationMetadata.getClassName();
         BeanDefinitionBuilder definition = BeanDefinitionBuilder.genericBeanDefinition(FutureFeignBean.class);
         String name = getName(attributes);
-        Assert.notNull(name, "@FutureFeignClient name not be null !");
+        Assert.noBlank(name, "@FutureFeignClient name not be null !");
         definition.addPropertyValue(Constant.INTERFACE_CLASS, className);
         definition.addPropertyValue(Constant.URI, getUri(attributes));
         definition.addPropertyValue(Constant.PATH, attributes.get(Constant.PATH));

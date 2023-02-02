@@ -7,9 +7,12 @@ import java.util.Comparator;
 import java.util.Objects;
 
 /**
+ * twice obj
+ * @see org.apache.commons.lang3.tuple.Triple
+ *
+ *
  * @author zpf
- * @description twice obj
- * @createTime 2022-10-18 13:38
+ * @since 1.1.0
  */
 public abstract class P<R, T> implements Serializable, Comparator<P<R, T>> {
 
@@ -43,6 +46,7 @@ public abstract class P<R, T> implements Serializable, Comparator<P<R, T>> {
 
     public static class Triple<R, T> extends P<R, T> implements Cloneable {
 
+        private static final long serialVersionUID = -3365222529936832584L;
         /**
          * left obj
          */
@@ -92,12 +96,12 @@ public abstract class P<R, T> implements Serializable, Comparator<P<R, T>> {
 
         @Override
         public int compare(P<R, T> o1, P<R, T> o2) {
-            T right1 = o1.getRight();
-            T right2 = o1.getRight();
-            T right11 = o2.getRight();
-            T right22 = o2.getRight();
-            return Integer.compare(right1.hashCode() + right2.hashCode(),
-                    right11.hashCode() + right22.hashCode());
+            T right_1 = o1.getRight();
+            R left_1 = o1.getLeft();
+            T right_2 = o2.getRight();
+            R left_2 = o2.getLeft();
+            return Integer.compare(right_1.hashCode() + left_1.hashCode(),
+                    right_2.hashCode() + left_2.hashCode());
         }
     }
 }
